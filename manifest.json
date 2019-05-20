@@ -1,0 +1,49 @@
+{
+   "background": {
+      "scripts": [ "scripts/common.js", "scripts/annyang.min.js", "scripts/plugins/plugin.js", "scripts/plugins/tab.js", "scripts/plugins/media.js", "scripts/plugins/bookmark.js", "scripts/plugins/navigation.js", "scripts/plugins/page.js", "scripts/plugins/extension.js", "scripts/plugins/query.js", "scripts/notification.js", "scripts/text_input.js", "scripts/background.js" ]
+   },
+   "browser_action": {
+      "default_icon": "icon_128.png",
+      "default_popup": "popup.html",
+      "default_title": "Chrome Voice"
+   },
+   "commands": {
+      "_execute_browser_action": {
+         "suggested_key": {
+            "chromeos": "Ctrl+Shift+H",
+            "linux": "Ctrl+Shift+H",
+            "mac": "Command+Shift+H",
+            "windows": "Ctrl+Shift+H"
+         }
+      }
+   },
+   "content_scripts": [ {
+      "js": [ "scripts/mic_detection_contents.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_idle"
+   }, {
+      "all_frames": true,
+      "css": [ "styles/contents.css" ],
+      "js": [ "scripts/contents.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_end"
+   } ],
+   "description": "Use voice commands to control your browser",
+   "icons": {
+      "128": "icon_128.png",
+      "16": "icon_16.png",
+      "48": "icon_48.png"
+   },
+   "incognito": "spanning",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo9F5Ez8XyQRx4usm8UjP3VnP161CfgFqzVyuLwxUIN0Rpe8ecMvz0Tj5exUOb+P2Ztp5HsSohZHALzQhZ2LTRz+gEnqqNvBBGs8Tjkp4chjNrCYcbaKDYFTXICALXKihGr+EbLBsqXyFe2/mwYDgaUveAoSEQzPmcahcVjFh2T1O5H5j/3lrUH9RCR2X40G3l1FYkkmiRAANMSgMMg5SfSS95J+OfoBLez/oYERJT9rj8+Z9YHBBJEyAeHeIRNA3Hy0QL3UOP+6VCKGalvcCy/c5oTMirlrP3dWptxyI/4e3apew1kcI3Z9RwG5w+G3zohGayqTtNXZkWR6n16qLdQIDAQAB",
+   "manifest_version": 2,
+   "name": "Chrome Voice Assistant",
+   "optional_permissions": [ "bookmarks" ],
+   "options_ui": {
+      "open_in_tab": true,
+      "page": "options.html"
+   },
+   "permissions": [ "\u003Call_urls>", "activeTab", "contextMenus", "notifications", "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.1.0"
+}
